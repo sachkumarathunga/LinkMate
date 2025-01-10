@@ -1,0 +1,15 @@
+/* styles/base/variables.css */
+:root {
+  --primary: #B723FF;
+  --primary-light: #0C87F2;
+  --primary-dark: #7CD91E;
+  --text-light: #fff;
+  --text-secondary: #aaa;
+  --card-bg: rgba(0, 0, 0, 0.8);
+  --border-radius: 8px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-xl: 32px;
+  --font-weight-bold: 600;
+}

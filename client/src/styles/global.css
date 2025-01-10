@@ -1,0 +1,4 @@
+/* src/styles/global.css */
+@import './base/reset.css';
+@import './base/variables.css';
+@import './base/typography.css';

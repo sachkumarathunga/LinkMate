@@ -1,0 +1,22 @@
+/* styles/components/form.css */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  margin-bottom: 20px;
+ 
+  padding: 12px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-md);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.form-input:focus {
+  background: rgba(255, 255, 255, 0.2);
+}

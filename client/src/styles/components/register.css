@@ -1,0 +1,127 @@
+/* Container for the entire layout */
+.register-login-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(120deg, #000000, #000000);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Left Panel */
+  .left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: url("../../assets/background1.jpg") no-repeat center center/cover;
+    text-align: center;
+  }
+  
+  .left-panel h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .left-panel p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .left-panel button {
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #3D0084, #B723FF);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+  
+  .left-panel button:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Right Panel */
+  .right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: #000; /* Set background to black */
+  }
+  
+  .form-container {
+    background: #3D0084; /* Changed to requested color */
+    padding: 60px;
+    padding-left: 40px; /* Increased padding for a balanced layout */
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .form-container h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #fff; /* Ensure heading color contrasts */
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .form-container input::placeholder {
+    color: #aaa;
+  }
+  
+  .form-container button {
+    width: 100%;
+    padding: 15px;
+    margin-left:10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #260259, #B723FF);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .form-container button:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Remove margin for equal alignment */
+  .left-panel,
+  .right-panel {
+    margin: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .register-login-container {
+      flex-direction: column;
+    }
+  
+    .left-panel,
+    .right-panel {
+      flex: none;
+      width: 100%;
+    }
+  }
+  

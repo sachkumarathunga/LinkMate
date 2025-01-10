@@ -1,0 +1,146 @@
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background: #260259;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: #3C038C;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-update-btn,
+.logout-btn {
+  margin-top: 10px;
+  padding: 12px 20px;
+  background: #CA6796;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.profile-update-btn:hover,
+.logout-btn:hover {
+  background: #3D0084;
+}
+
+/* Main Content */
+.dashboard-main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Profile Card */
+.profile-card {
+  background: #3D0084;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* User List Slider */
+.user-list {
+  margin-top: 20px;
+}
+
+.user-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #555 #292938;
+}
+
+.user-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.user-slider::-webkit-scrollbar-track {
+  background: #292938;
+}
+
+.user-slider::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+.user-card {
+  background: #3D0084;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.user-age {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.send-request-btn {
+  background: #CA6796;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.send-request-btn:hover {
+  background: #3D0084;
+}
+
+
+.notification-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.notification-icon {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 3px 6px;
+}

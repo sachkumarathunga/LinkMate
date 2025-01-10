@@ -1,0 +1,205 @@
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background: url("../../assets/chatbg.jpg") no-repeat center center/cover;
+  font-family: "Arial", sans-serif;
+  color: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 20%;
+  background: url("../../assets/sidebar.jpg") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar ul li.active {
+  background: #872588;
+  border-radius: 5px;
+}
+
+.sidebar ul li:hover {
+  background: #3c038c;
+  border-radius: 5px;
+}
+
+.sidebar-btn {
+  margin-top: 20px;
+  background: linear-gradient(90deg, #872588, #3d0081);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.sidebar-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Main Dashboard Content */
+.dashboard-main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.dashboard-header {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-header h1 {
+  color: white;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 18px;
+  color: #fff;
+}
+
+/* Content */
+.dashboard-content {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.profile-card,
+.user-list {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-card h2,
+.user-list h2 {
+  color: #7a4ed9;
+  margin-bottom: 15px;
+}
+
+.user-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  color: white;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #dcdcdc;
+  outline: none;
+}
+
+.send-request-btn {
+  background: linear-gradient(90deg, #872588, #3d0081);
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.send-request-btn:hover {
+  transform: scale(1.05);
+}
+
+
+.notification-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.notification-icon {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 3px 6px;
+}
+
+
+/* Requested Button Styling */
+.requested-btn {
+  background: linear-gradient(90deg, #faf8f8, #f1a0f4);
+  
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+}

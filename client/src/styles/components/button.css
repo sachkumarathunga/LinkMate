@@ -1,0 +1,22 @@
+/* styles/components/button.css */
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.primary-button {
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  color: var(--text-light);
+}
+
+.primary-button:hover {
+  background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+  transform: scale(1.05);
+}
