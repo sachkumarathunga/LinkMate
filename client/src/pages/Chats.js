@@ -15,7 +15,7 @@ const Chats = () => {
   const [newMessage, setNewMessage] = useState("");
   const [image, setImage] = useState(null);
   const [profileData, setProfileData] = useState(null);
-  const [onlineUsers, setOnlineUsers] = useState({});
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [showDropdownChat, setShowDropdownChat] = useState(null);
   const [showDropdownMessage, setShowDropdownMessage] = useState(null);
   const [typing, setTyping] = useState(false);
@@ -44,16 +44,8 @@ const Chats = () => {
 
     // Handle online/offline updates
     socket.on("user online", (id) => {
-      setOnlineUsers((prev) => ({ ...prev, [id]: true }));
-    });
-
-    socket.on("user offline", (id, lastSeenTime) => {
-      setOnlineUsers((prev) => {
-        const updated = { ...prev };
-        delete updated[id];
-        return updated;
-      });
-      setLastSeen((prev) => ({ ...prev, [id]: lastSeenTime }));
+      console.log("id:", id);
+      setOnlineUsers(id);
     });
 
     // Listen for typing status
@@ -70,6 +62,7 @@ const Chats = () => {
     });
 
     return () => {
+      socket.emit("user offline", userId);
       socket.disconnect();
     };
   }, [userId, chatId]);
@@ -101,17 +94,21 @@ const Chats = () => {
     const fetchMessages = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get(`/messages/${chatId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setMessages(res.data);
+        if (chatList[0]?._id) {
+          const res = await axios.get(`/messages/${chatList[0]?._id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setMessages(res.data);
+        }
       } catch (err) {
         console.error("Error fetching messages:", err.message);
       }
     };
 
     if (chatId) {
-      fetchMessages();
+      if (messages) {
+        fetchMessages();
+      }
       socket?.emit("join chat", chatId);
       socket?.on("message received", (newMessage) => {
         setMessages((prev) => [...prev, newMessage]);
@@ -121,7 +118,7 @@ const Chats = () => {
     return () => {
       if (socket) socket.off("message received");
     };
-  }, [chatId]);
+  }, [chatId, messages, chatList]);
 
   // Send a new message
   const sendMessage = async () => {
@@ -243,8 +240,11 @@ const Chats = () => {
                       .map((user) => user.name)
                       .join(", ")}
                   </p>
-                  <p className={`status ${onlineUsers[connectedUser?._id] ? "online" : "offline"}`}>
-                    {onlineUsers[connectedUser?._id]
+                  <p
+                    className={`status ${onlineUsers.includes(connectedUser?._id) ? "online" : "offline"
+                      }`}
+                  >
+                    {onlineUsers.includes(connectedUser?._id)
                       ? "Online"
                       : `Last seen: ${lastSeen[connectedUser?._id] || "Unknown"}`}
                   </p>

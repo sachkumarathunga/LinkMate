@@ -19,6 +19,7 @@ const io = new Server(server, {
 });
 
 let onlineUsers = {}; // Map userId to array of socket IDs
+let allOnlineUsers = [];
 
 // Middleware
 app.use(cors());
@@ -36,12 +37,15 @@ app.use("/api/messages", require("./routes/messageRoutes"));
 // Socket.IO Logic
 io.on("connection", (socket) => {
   console.log("New connection:", socket.id);
+  console.log("socket:", socket);
 
   // Handle user setup (when a user connects)
   socket.on("setup", (userId) => {
     if (!userId) {
       console.error("No userId provided in setup event.");
       return;
+    } else {
+      console.log("User setup:", userId);
     }
 
     // Add or update the user with the current socket ID
@@ -50,8 +54,13 @@ io.on("connection", (socket) => {
     }
     onlineUsers[userId].push(socket.id);
 
+    if(!allOnlineUsers.includes(userId)) {
+      allOnlineUsers.push(userId);
+    }
+
     // Emit the updated online users list to all connected clients
     io.emit("online users", onlineUsers);
+    io.emit("user online", allOnlineUsers);
     console.log("Online Users after setup:", onlineUsers);
   });
 
@@ -61,12 +70,33 @@ io.on("connection", (socket) => {
 
     // Add the user to the chat room
     socket.join(chatId);
-    console.log(`User joined chat: ${chatId}`);
+  });
+
+  // Handle online/offline updates
+  socket.on("user online", (id) => {
+    if (!userId) {
+      console.error("No userId provided in setup event.");
+      return;
+    } else {
+      console.log("User online:", userId);
+    }
+
+    // Add or update the user with the current socket ID
+    if (!onlineUsers[userId]) {
+      onlineUsers[userId] = [];
+    }
+
+    onlineUsers[userId].push(socket.id);
+
+    // Emit the updated online users list to all connected clients
+    io.emit("online users", onlineUsers);
   });
 
   // Handle new message broadcasting
   socket.on("new message", (newMessage) => {
     const chat = newMessage.chat;
+
+    console.log("Received new message:", newMessage);
 
     if (!chat || !chat.users) return;
 
@@ -80,6 +110,17 @@ io.on("connection", (socket) => {
 
     // Broadcast the message to the room
     socket.to(chat._id).emit("message received", newMessage);
+    if(!allOnlineUsers.includes(userId)) {
+      allOnlineUsers.push(userId);
+    }
+    io.emit("user online", allOnlineUsers);
+  });
+
+  socket.on("user offline", (userId) => {
+    if (allOnlineUsers.includes(userId)) {
+      allOnlineUsers = allOnlineUsers.filter(id => id !== userId);
+    }
+    io.emit("user online", allOnlineUsers);
   });
 
   // Handle user disconnecting
@@ -101,6 +142,10 @@ io.on("connection", (socket) => {
 
     // Emit the updated online users list to all connected clients
     io.emit("online users", onlineUsers);
+    if (allOnlineUsers.includes(socket.id)) {
+      allOnlineUsers = allOnlineUsers.filter(id => id !== socket.id);
+    }
+    io.emit("user online", allOnlineUsers);
     console.log("Online Users after disconnect:", onlineUsers);
   });
 });
